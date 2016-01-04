@@ -27,7 +27,10 @@
 
                 // then... we draw color rectangle at the left of the canvas indicating the level of matching
                 tool.canvasContext.fillStyle = colorHex;
-                tool.canvasContext.fillRect(0, i*480/colorPalette.length, matchingIndexes[i]*200 + 4, 480/colorPalette.length);
+                tool.canvasContext.fillRect(
+                    0, i*tool.canvas.height/colorPalette.length,
+                    matchingIndexes[i]*200 + 4, tool.canvas.height/colorPalette.length
+                );
             });
         });
 
