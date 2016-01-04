@@ -111,7 +111,10 @@
             colorVecHSV = _rgb2hsv(colorVec),
             tmpDistance, i, l = this.colorPaletteHex.length;
         for (i = 0; i < l; i++) {
+            // HSV color distance
             // if ((tmpDistance = this.getColorsDistanceVec(colorVecHSV, this.colorPaletteVecHSV[i])) < minDistance) {
+
+            // RGB color distance
             if ((tmpDistance = this.getColorsDistanceVec(colorVec, this.colorPaletteVec[i])) < minDistance) {
                 minIndex = i;
                 minDistance = tmpDistance;
@@ -140,11 +143,15 @@
             x = (i/4) % w;
             y = parseInt((i/4) / w);
             
+            // if the current pixel belongs to the sampling grid...
             if (!(x % this.SAMPLING_GRID_THRESHOLD) && !(y % this.SAMPLING_GRID_THRESHOLD)) {
+                // get the best match in the color palette...
                 tmpColor = [pixels[i], pixels[i+1], pixels[i+2]];
                 tmpIndex = this.findBestMatchIndexInPalette(tmpColor);
+                // increment the usae ratio for this color
                 matchingIndexes[tmpIndex] += 1/totalCycles;
 
+                // draw the debug dots
                 this.canvasContext.beginPath();
                 this.canvasContext.arc(x, y, 3, 0, 2 * Math.PI);
                 this.canvasContext.fillStyle = this.colorPaletteHex[tmpIndex];
