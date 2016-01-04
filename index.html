@@ -11,16 +11,21 @@
     <script>
         var tool = new ColorMatcher();
 
+        // given a preset of hex colors (#rgb and #rrggbb formats are accepted, even uppercase or without '#').
         var colorPalette = [
-            '#fff', '#000',
             '#1abc9c', '#2ecc71', '#3498db', '#9b59b6', '#34495e',
             '#16a085', '#27ae60', '#2980b9', '#8e44ad', '#2c3e50',
             '#f1c40f', '#e67e22', '#e74c3c', '#ecf0f1', '#95a5a6',
             '#f39c12', '#d35400', '#c0392b', '#bdc3c7', '#7f8c8d',
         ];
 
+        // register a listen callback that will execute each time the tool gets new info from the device
         tool.listen(colorPalette, function (matchingIndexes) {
+            // for each color in the palette...
             colorPalette.forEach(function (colorHex, i) {
+                // matchingIndexes[i] matching indexes will contain the matching index (0..1 floating point value) of the given video stream
+
+                // then... we draw color rectangle at the left of the canvas indicating the level of matching
                 tool.canvasContext.fillStyle = colorHex;
                 tool.canvasContext.fillRect(0, i*480/colorPalette.length, matchingIndexes[i]*200 + 4, 480/colorPalette.length);
             });
