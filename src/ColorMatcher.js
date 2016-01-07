@@ -72,9 +72,9 @@
         var offset = (3 === hex.length || 6 === hex.length ? 0 : 1),
             elemLength = (hex.length < 5 ? 1 : 2);
         return [
-            parseInt(hex.substr(0 + offset, elemLength), 16),
-            parseInt(hex.substr(1 + offset, elemLength), 16),
-            parseInt(hex.substr(2 + offset, elemLength), 16),
+            parseInt(hex.substr(0*elemLength + offset, elemLength), 16),
+            parseInt(hex.substr(1*elemLength + offset, elemLength), 16),
+            parseInt(hex.substr(2*elemLength + offset, elemLength), 16),
         ];
     };
 
